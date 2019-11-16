@@ -1,0 +1,64 @@
+<style type="text/css">
+  .club-members-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+  }
+</style>
+<%= form_for(@slot) do |form| %>
+  <% if @slot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
+
+      <ul>
+        <% @slot.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="club-members-grid">
+      <div id="activity-feed">
+        <div class="form-group">
+          <%= form.label :start_hour %>
+          <%= form.number_field :start_hour %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :end_hour %>
+          <%= form.number_field :end_hour %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :start_min %>
+          <%= form.number_field :start_min %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :end_min %>
+          <%= form.number_field :end_min %>
+        </div>
+     </div>
+   
+       <div class="form-group" style="display: none">
+          <%= form.label :user_id %>
+          <%= form.number_field :user_id %>
+       </div>
+
+       <div class="form-group" style="display: none;">
+         <%= form.label :active %>
+         <%= form.number_field :active, :value => 1 %>
+       </div>
+     <div class="text-right form-group">
+        <input type="button" id="but_add" value="Add" class="btn btn-info btn-sm">
+     </div>
+  </div>
+  <div class="col-sm-12">
+       <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+
